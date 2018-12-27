@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome back!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-primary">
+        <h1 id="introduction" class='header'>Welcome to the Dojo Message Board</h1>
+    </nav>
+    <div id='post_message'>
+        <h3>Post a message!</h3>
+        <% JSON.stringify(messages) %>
+        <% if(messages.message) { %>
+        <% for (var x of messages.message) { %>
+        <h5 id="validations">
+            <%= x %>
+        </h5>
+        <% } %>
+        <% } %>
+            <form action="/message" method="POST">
+                <label for="">Name:</label>
+                <input type="text" name="name" class="form-control">
+                <label for="">Message:</label>
+                <input type="text" class="form-control" name="message"></input>
+                <button class="btn btn-primary" type="submit">Post Message</button>
+            </form>
+    </div>
+    <div id='message_wall'>
+        <% for(var m = 0; m < messages.length; m++) { %>
+        <h5>
+            <%= messages[m].name %> -
+            <%= moment(messages[m].createdAt).format('h:mm a MMMM Do YYYY') %>
+        </h5>
+        <p id='message'>
+            <%= messages[m].message %>
+        </p>
+        <% for(var c = 0; c < messages[m].comments.length; c++) { %>
+        <p class='comment_info'>
+            <%= messages[m].comments[c].name %> -
+            <%= moment(messages[m].comments[c].createdAt).format('h:mm a MMMM Do YYYY') %>
+        </p>
+        <p class='comments'>
+            <%= messages[m].comments[c].comment %>
+        </p>
+        <% } %>
+        <div id='post_comment'>
+            <form action="/comment/<%= messages[m]._id %>" method="POST">
+                <label for="">Name:</label>
+                <input type="text" name="name" class="form-control">
+                <label for="">Comment:</label>
+                <input type="text" id="comment_text" class="form-control" name="comment"></input>
+                <button class="btn btn-success" type="submit">Post Comment</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+</body>
+
+</html>

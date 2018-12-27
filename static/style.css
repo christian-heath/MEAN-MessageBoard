@@ -1,0 +1,37 @@
+#logout{
+    margin-left: 300px;
+}
+#post_message {
+    display: block;
+    padding: 10px 20px;
+    margin: 4px;
+}
+#comment_text{
+    display: inline-block;
+    margin-left: 100px;
+    width: 500px;
+}
+.btn-success{
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+.btn-primary{
+    margin-top: 10px;
+    margin-left: 1080px;
+}
+#message_wall{
+    display: block;
+    padding: 10px 20px;
+    margin: 10px;
+}
+#delete_button{
+    margin-bottom: 10px;
+}
+.comment_info{
+    font-size: 16pt;
+    margin-left: 75px;
+}
+.comments{
+    margin-left: 100px;
+}
